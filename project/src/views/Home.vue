@@ -1,25 +1,30 @@
 <template>
     <section>
+        <CropImage
+                @hideModal="hide"
+                @setImg="set($event)"
+                v-if="modal"
+        />
         <v-navigation-drawer
                 v-model="drawer"
                 app
         >
             <v-sheet
-                    color="grey lighten-4"
-                    class="pa-4"
+                    color="grey lighten-1"
+                    class="pa-4 primary"
             >
                 <v-avatar
                         class="mb-4"
-                        color="grey darken-1"
+                        color="white darken-1"
                         size="64"
                 ></v-avatar>
 
-                <div>Иванов Иван</div>
+                <div class="user-name">Иванов Иван</div>
             </v-sheet>
 
             <v-divider></v-divider>
 
-            <v-list>
+            <v-list class="toolbar-list">
                 <v-list-item
                         v-for="[icon, text] in links"
                         :key="icon"
@@ -85,8 +90,13 @@
 </template>
 
 <script>
+    import CropImage from "../components/CropImage";
+
     export default {
+        components: {CropImage},
+
         data: () => ({
+            modal: true,
             cards: ['Today', 'Yesterday'],
             drawer: null,
             links: [
@@ -96,9 +106,23 @@
                 ['mdi-alert-octagon', 'Spam'],
             ],
         }),
+
+        methods: {
+            hide() {
+                this.modal = false;
+            }
+        }
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
+    .toolbar-list {
+        height: calc(100% - 137px);
+        background-color: #33393D !important;
+    }
+
+    .user-name {
+        color: white;
+    }
 </style>
