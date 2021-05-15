@@ -12,6 +12,44 @@
 
             <v-icon>mdi-triangle</v-icon>
         </v-system-bar>
+        <v-navigation-drawer
+                v-model="drawer"
+                app
+
+                v-if="$route.path !== '/auth'"
+        >
+            <v-sheet
+                    color="grey lighten-1"
+                    class="pa-4 primary"
+            >
+                <v-avatar
+                        class="mb-4"
+                        color="white darken-1"
+                        size="64"
+                ></v-avatar>
+
+                <div class="user-name">Иванов Иван</div>
+            </v-sheet>
+
+            <v-divider></v-divider>
+
+            <v-list class="toolbar-list">
+                <v-list-item
+                        v-for="[icon, text] in links"
+                        :key="icon"
+                        link
+
+                >
+                    <v-list-item-icon>
+                        <v-icon color="white">{{ icon }}</v-icon>
+                    </v-list-item-icon>
+
+                    <v-list-item-content>
+                        <v-list-item-title class="link-list">{{ text }}</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </v-navigation-drawer>
 
         <router-view />
     </v-app>
@@ -25,10 +63,11 @@
             cards: ['Today', 'Yesterday'],
             drawer: null,
             links: [
-                ['mdi-inbox-arrow-down', 'Inbox'],
-                ['mdi-send', 'Send'],
-                ['mdi-delete', 'Trash'],
-                ['mdi-alert-octagon', 'Spam'],
+                ['mdi-account', 'Личный кабинет'],
+                ['mdi-format-list-bulleted', 'Сотрудники'],
+                ['mdi-file-document', 'Учебная литература'],
+                ['mdi-table-account', 'Расписание'],
+                ['mdi-file-link', 'Научные работы'],
             ],
         }),
     }
@@ -89,6 +128,19 @@
 
     a {
         color: #ccc !important;
+    }
+    /*Сайдбар*/
+    .toolbar-list {
+        height: calc(100% - 137px);
+        background-color: #33393D !important;
+    }
+
+    .user-name {
+        color: white;
+    }
+
+    .link-list {
+        color: white !important;
     }
 </style>
 

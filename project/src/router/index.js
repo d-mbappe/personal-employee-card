@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 /*views*/
 import Auth from "../views/Auth";
-import Home from "../views/Home";
+import Account from "../views/Account";
 
 Vue.use(VueRouter)
 
@@ -16,8 +16,8 @@ const routes = [
 
     {
         path: '/',
-        name: 'Home',
-        component: Home
+        name: 'Account',
+        component: Account
     },
 //   {
 //     path: '/about',
