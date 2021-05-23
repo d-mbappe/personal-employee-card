@@ -26,7 +26,9 @@
                         class="mb-4"
                         color="white darken-1"
                         size="64"
-                ></v-avatar>
+                >
+                    <img :src="avatar" alt="">
+                </v-avatar>
 
                 <div class="user-name">Иванов Иван</div>
             </v-sheet>
@@ -34,19 +36,23 @@
             <v-divider></v-divider>
 
             <v-list class="toolbar-list">
+
                 <v-list-item
-                        v-for="[icon, text] in links"
+                        v-for="[icon, text, path] in links"
                         :key="icon"
                         link
+                        :to="path"
+                        active-class="active"
 
                 >
-                    <v-list-item-icon>
-                        <v-icon color="white">{{ icon }}</v-icon>
-                    </v-list-item-icon>
 
-                    <v-list-item-content>
-                        <v-list-item-title class="link-list">{{ text }}</v-list-item-title>
-                    </v-list-item-content>
+                        <v-list-item-icon>
+                            <v-icon :color="$router.currentRoute.path === path ? 'primary' : 'white'" >{{ icon}}</v-icon>
+                        </v-list-item-icon>
+
+                        <v-list-item-content>
+                            <v-list-item-title active-class="active-class" class="link-list">{{ text }}</v-list-item-title>
+                        </v-list-item-content>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
@@ -63,13 +69,19 @@
             cards: ['Today', 'Yesterday'],
             drawer: null,
             links: [
-                ['mdi-account', 'Личный кабинет'],
-                ['mdi-format-list-bulleted', 'Сотрудники'],
-                ['mdi-file-document', 'Учебная литература'],
-                ['mdi-table-account', 'Расписание'],
-                ['mdi-file-link', 'Научные работы'],
+                ['mdi-account', 'Личный кабинет', '/'],
+                ['mdi-format-list-bulleted', 'Сотрудники', '/employee'],
+                ['mdi-file-document', 'Учебная литература', '/educational-literature'],
+                ['mdi-table-account', 'Расписание', '/schedule'],
+                ['mdi-file-link', 'Научные работы', '/scientific-work'],
             ],
         }),
+
+        computed: {
+            avatar() {
+                return this.$store.state.avatar;
+            }
+        }
     }
 </script>
 
@@ -135,12 +147,22 @@
         background-color: #33393D !important;
     }
 
+    .toolbar-link {
+        width: 100%;
+        text-decoration: none;
+        display: flex;
+    }
+
     .user-name {
         color: white;
     }
 
     .link-list {
         color: white !important;
+    }
+
+    .active  {
+        background: rgba(0, 0, 0, .6);
     }
 </style>
 

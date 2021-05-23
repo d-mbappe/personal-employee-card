@@ -177,71 +177,7 @@
 </script>
 
 <style lang="scss" scoped>
-/*
-    @import "../assets/variables";
-    @import "../assets/components/avatar";*/
-/*
-.no_valid_img__container{
-    position: absolute;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-    border-radius: 10px;
-    -webkit-filter: sepia(200%);
-    filter: sepia(200%);
-}
-.no_valid_img__msg{
-    margin-top: 30%;
-    margin-bottom: 30%;
-    color: #FFFFFF;
-}
-.no_valid_img__msg_profile{
-    font-size: small;
-}
-.no_valid_img__filter_blur {
-    -webkit-filter: blur(15px);
-    -moz-filter: blur(15px);
-    filter: blur(15px);
-}
 
-.no_valid_img__filter_sepia {
-    border-radius: 10px;
-    -webkit-filter: sepia(200%);
-    -moz-filter: sepia(200%);
-    filter: sepia(200%);
-}
-
-.no_valid_img__filter_brightness {
-    border-radius: 10px;
-    -webkit-filter:brightness(40%);
-    -moz-filter:brightness(40%);
-    filter: url(#brightness);
-    filter:brightness(40%);
-}
-
-.no_valid_img__footer {
-    position: fixed; !* Фиксированное положение *!
-    left: 0; bottom: 0; !* Левый нижний угол *!
-    color: #fff; !* Цвет текста *!
-    width: 100%; !* Ширина слоя *!
-    margin-bottom: 10%;
-}
-
-.no_valid_img__btn{
-    border-radius: 5px;
-    background: white;
-    margin: 5px 0px 5px 0px;
-    padding: 10px 20px 10px 20px;
-    color: black;
-    font-weight: bold; !* то же самое что и 700 *!
-    font-family: "Roboto", sans-serif !important;
-}
-
-.no_valid_img__btn_profile{
-    padding: 5px 10px 5px 10px;
-    font-size: small;
-}*/
 
 .d-none{
     display: none;
@@ -249,8 +185,6 @@
 .avatar {
     width: 185px;
     height: 250px;
-
-    margin: 0 auto;
 
     cursor: pointer;
     border-radius: 10px;

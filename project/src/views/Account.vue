@@ -17,14 +17,55 @@
                     <v-col
                             cols="12"
                     >
-                        <v-card class="pb-10">
-                            <v-subheader></v-subheader>
-                            <Avatar ref="avatar"
-                                    @setImg="setProfileImg($event)"
-                                    :imageURL="img"
+                        <v-card class="pa-10">
+                            <v-row>
+                                <Avatar ref="avatar"
+                                        @setImg="setProfileImg($event)"
+                                        :imageURL="img"
 
-                                    :original="originalPhoto"
-                            />
+                                        :original="originalPhoto"
+                                />
+                                <div class="profile-form">
+                                    <v-text-field
+                                            v-model="profile.FIO"
+                                            label="ФИО"
+                                            outlined
+                                            clearable
+                                    ></v-text-field>
+
+                                    <v-text-field
+                                            v-model="profile.position"
+                                            label="Должность"
+                                            outlined
+                                            clearable
+                                    ></v-text-field>
+
+                                    <v-text-field
+                                            v-model="profile.qualification"
+                                            label="Квалификация"
+                                            outlined
+                                            clearable
+                                    ></v-text-field>
+
+                                    <v-col class="text-right pa-0"
+                                    >
+                                        <v-btn
+                                                depressed
+                                                color="success"
+                                                @click="save"
+                                        >
+                                            Сохранить
+                                        </v-btn>
+                                    </v-col>
+
+                                </div>
+                            </v-row>
+                            <v-row>
+
+
+                            </v-row>
+
+
 
                         </v-card>
                     </v-col>
@@ -46,8 +87,13 @@
             modal: false,
             drawer: null,
             img: '',
-            originalPhoto: '',
         }),
+
+        computed: {
+            profile() {
+                return this.$store.state.profile
+            }
+        },
 
         methods: {
             hide() {
@@ -65,6 +111,11 @@
                 this.originalPhoto = url.original;
                 this.modal = false;
             },
+
+            save() {
+                this.$store.commit('set_avatar', this.img)
+                console.log(this.$store.state.avatar)
+            }
         }
     }
 </script>
@@ -82,5 +133,10 @@
 
     .link-list {
         color: white !important;
+    }
+
+    .profile-form {
+        width: 45%;
+        margin: 0 auto;
     }
 </style>
