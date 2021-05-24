@@ -47,7 +47,47 @@
                                             clearable
                                     ></v-text-field>
 
-                                    <v-col class="text-right pa-0"
+                                    <v-col class="pa-0 mt-5">
+                                        <v-expansion-panels accordion>
+                                            <v-expansion-panel>
+                                                <v-expansion-panel-header>Курсы повышения квалификации</v-expansion-panel-header>
+                                                <v-expansion-panel-content>
+
+                                                    <v-list>
+                                                        <v-list-item-group v-model="model">
+                                                            <v-list-item
+                                                                    v-for="(item, i) in items"
+                                                                    :key="i"
+                                                            >
+                                                                <v-list-item-icon>
+                                                                    <v-icon v-text="item.icon"></v-icon>
+                                                                </v-list-item-icon>
+                                                                <v-list-item-content>
+                                                                    <v-list-item-title v-text="item.text"></v-list-item-title>
+                                                                </v-list-item-content>
+                                                            </v-list-item>
+                                                        </v-list-item-group>
+                                                    </v-list>
+
+                                                    <v-col class="test">
+                                                        <v-btn
+                                                                fab
+                                                                dark
+                                                                small
+                                                                color="primary"
+                                                        >
+                                                            <v-icon dark>
+                                                                mdi-plus
+                                                            </v-icon>
+                                                        </v-btn>
+                                                    </v-col>
+
+                                                </v-expansion-panel-content>
+                                            </v-expansion-panel>
+                                        </v-expansion-panels>
+                                    </v-col>
+
+                                    <v-col class="text-right pa-0 mt-5"
                                     >
                                         <v-btn
                                                 depressed
@@ -57,15 +97,8 @@
                                             Сохранить
                                         </v-btn>
                                     </v-col>
-
                                 </div>
                             </v-row>
-                            <v-row>
-
-
-                            </v-row>
-
-
 
                         </v-card>
                     </v-col>
@@ -87,6 +120,26 @@
             modal: false,
             drawer: null,
             img: '',
+
+            courses: [],
+            items: [
+                {
+                    icon: 'mdi-attachment',
+                    text: 'Введение в преподавание английского языка как второго языка',
+                },
+                {
+                    icon: 'mdi-attachment',
+                    text: 'Практика формирования контента для онлайн-курса в условиях цифрового обучения(исключительно ЭОиДОТ)',
+                },
+                {
+                    icon: 'mdi-attachment',
+                    text: 'Создание и использование цифровых образовательных ресурсов в профессиональной деятельности учителя(исключительно ЭОиДОТ)',
+                },
+                {
+                    icon: 'mdi-attachment',
+                    text: 'Актуальные вопросы преподавания английского языка и культуры в работе преподавателя естественнонаучных и технических факультетов вузов и колледжей (с частичным применением ЭОиДОТ)',
+                },
+            ],
         }),
 
         computed: {
@@ -138,5 +191,9 @@
     .profile-form {
         width: 45%;
         margin: 0 auto;
+    }
+
+    .test {
+        text-align: center;
     }
 </style>

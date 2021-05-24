@@ -15,7 +15,6 @@
         <v-navigation-drawer
                 v-model="drawer"
                 app
-
                 v-if="$route.path !== '/auth'"
         >
             <v-sheet
@@ -24,10 +23,19 @@
             >
                 <v-avatar
                         class="mb-4"
-                        color="white darken-1"
+                        color="grey darken-3"
                         size="64"
                 >
-                    <img :src="avatar" alt="">
+                    <img  v-if="avatar"
+                          :src="avatar"
+                          alt="avatar"
+                    >
+                    <img  v-else
+                          src="./assets/icons/avatar_logo.svg"
+                          class="pa-2"
+                          alt="avatar"
+                    >
+
                 </v-avatar>
 
                 <div class="user-name">Иванов Иван</div>
@@ -43,7 +51,6 @@
                         link
                         :to="path"
                         active-class="active"
-
                 >
 
                         <v-list-item-icon>
