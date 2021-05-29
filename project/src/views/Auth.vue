@@ -6,8 +6,8 @@
                     <v-flex xs12 sm4 elevation-6>
                         <v-toolbar class="pt-1 primary" rounded>
                             <v-flex id="auth-header">
-                                <button id="log" text class="auth-btn" :class="{'active': logActive}"  @click="changeForm($event, 'log')">Вход</button>
-                                    <button id="reg" text class="auth-btn" :class="{'active': regActive}"  @click="changeForm($event, 'reg')">Регистрация</button>
+                                <button id="log" text class="auth-btn" :class="{'active-name': logActive}"  @click="changeForm($event, 'log')">Вход</button>
+                                    <button id="reg" text class="auth-btn" :class="{'active-name': regActive}"  @click="changeForm($event, 'reg')">Регистрация</button>
                             </v-flex>
                             </v-toolbar-items>
                         </v-toolbar>
@@ -152,7 +152,7 @@
                 background-color: inherit;
             }
 
-            &.active {
+            &.active-name {
                 opacity: 1;
                 font-size: 24px;
             }

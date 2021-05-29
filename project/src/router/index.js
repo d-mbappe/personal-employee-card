@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 /*views*/
 import Auth from "../views/Auth";
 import Account from "../views/Account";
+import Employee from "../views/Employee";
+import EducationalLiterature from "../views/EducationalLiterature";
 
 Vue.use(VueRouter)
 
@@ -14,11 +16,24 @@ const routes = [
     component: Auth
   },
 
-    {
-        path: '/',
-        name: 'Account',
-        component: Account
-    },
+  {
+    path: '/',
+    name: 'Account',
+    component: Account
+  },
+
+  {
+    path: '/employee',
+    name: 'Employee',
+    component: Employee
+  },
+
+  {
+    path: '/educational-literature',
+    name: 'EducationalLiterature',
+    component: EducationalLiterature
+  },
+
 //   {
 //     path: '/about',
 //     name: 'About',

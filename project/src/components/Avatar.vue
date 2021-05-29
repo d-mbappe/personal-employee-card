@@ -160,6 +160,7 @@
 
                 reader.onload = function(e) {
                     vm.imageL = e.target.result;
+                    console.log(vm.imageL)
                     vm.$emit('setImg', vm.image)
                 };
 

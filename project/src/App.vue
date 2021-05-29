@@ -1,6 +1,7 @@
 <template>
     <v-app id="inspire">
         <v-system-bar app class="primary">
+          <span class="bar-title">ДонНТУ Кафедра ИИСА</span>
             <v-spacer></v-spacer>
 
             <router-link class="mr-5" to="/auth">Авторизация</router-link>
@@ -148,6 +149,12 @@
     a {
         color: #ccc !important;
     }
+
+    .bar-title {
+      color: white;
+      font-weight: 500;
+    }
+
     /*Сайдбар*/
     .toolbar-list {
         height: calc(100% - 137px);
