@@ -59,7 +59,7 @@
                         <v-expansion-panel-header>Курсы повышения квалификации</v-expansion-panel-header>
                         <v-expansion-panel-content>
                           <v-list>
-                            <v-list-item-group v-model="model">
+                            <v-list-item-group >
                               <v-list-item
                                   v-for="(item, i) in courses"
                                   :key="i + 'item'"
@@ -86,8 +86,11 @@
                                     class="ml-4"
                                     @click.prevent="test(i)"
                                 >
-                                  <v-icon dark small>
+                                  <v-icon v-if="!item.change" dark small>
                                     mdi-pencil
+                                  </v-icon>
+                                  <v-icon v-else dark>
+                                    mdi-check
                                   </v-icon>
                                 </v-btn>
                               </v-list-item>
@@ -121,7 +124,7 @@
                         <v-expansion-panel-header>Награды</v-expansion-panel-header>
                         <v-expansion-panel-content>
                           <v-list>
-                            <v-list-item-group v-model="model">
+                            <v-list-item-group >
                               <v-list-item
                                   v-for="(item, i) in courses"
                                   :key="i + 'item'"
@@ -254,9 +257,7 @@
 
       test(i) {
         this.courses[i].change = !this.courses[i].change;
-        console.log(this.courses[i].change);
         this.$forceUpdate();
-
       },
       hide() {
         this.modal = false;
