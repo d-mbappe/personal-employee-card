@@ -48,35 +48,58 @@
               @change="onChange"
           ></v-file-input>
         </v-card-text>
-        <v-card-actions v-if="item.src">
+        <v-card-actions class="d-flex justify-lg-space-between" v-if="item.src">
           <!--Просмотр-->
-          <v-btn
-              outlined
-              rounded
-              text
-              @click="showPdf(item.src)"
-          >
-            <v-icon class="mr-1" dark>
-              mdi-eye-outline
-            </v-icon>
-            <span>Просмотр</span>
-          </v-btn>
-          <!--Скачать-->
-          <v-btn
-              outlined
-              rounded
-              text
-              color="success"
-              @click="downloadPdf(item.src)"
-          >
-            <v-icon class="mr-1" dark>
-              mdi-download
-            </v-icon>
-            <span>
+          <v-col>
+            <v-btn
+                outlined
+                rounded
+                text
+                @click="showPdf(item.src)"
+                class="mr-3"
+            >
+              <v-icon class="mr-1" dark>
+                mdi-eye-outline
+              </v-icon>
+              <span>Просмотр</span>
+            </v-btn>
+            <!--Скачать-->
+            <v-btn
+                outlined
+                rounded
+                text
+                color="success"
+                @click="downloadPdf(item.src)"
+            >
+              <v-icon class="mr-1" dark>
+                mdi-download
+              </v-icon>
+              <span>
               Скачать
               <a :id="item.src" :href="item.src" download></a>
             </span>
-          </v-btn>
+            </v-btn>
+          </v-col>
+
+
+          <v-col class="d-flex justify-end">
+            <!--Удалить-->
+            <v-btn
+                outlined
+                rounded
+                text
+                color="red"
+                @click="removeItem(i)"
+            >
+              <v-icon class="mr-1" dark>
+                mdi-delete
+              </v-icon>
+              <span>
+              Удалить
+            </span>
+            </v-btn>
+          </v-col>
+
         </v-card-actions>
       </v-card>
 
@@ -103,11 +126,9 @@
         </v-btn>
 
       </v-col>
-
-
-
-
     </v-container>
+
+    <!--Компонент просмотра файлов-->
     <PdfViewer  :display="pdfView"
                 :key="pdfView"
                 :fileName="currentFileToView"
@@ -175,6 +196,10 @@
           src: '',
           change: true
         })
+      },
+
+      removeItem(i) {
+        this.literature.splice(i, 1);
       },
 
       downloadPdf(element) {

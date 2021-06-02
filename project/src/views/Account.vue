@@ -102,7 +102,7 @@
                             <v-btn
                                 fab
                                 dark
-                                x-small
+                                small
                                 color="primary"
                                 @click="addItem('courses')"
                             >
@@ -166,7 +166,7 @@
                             <v-btn
                                 fab
                                 dark
-                                x-small
+                                small
                                 color="primary"
                                 @click="addItem('award')"
                             >

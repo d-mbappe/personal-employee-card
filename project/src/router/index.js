@@ -6,6 +6,7 @@ import Auth from "../views/Auth";
 import Account from "../views/Account";
 import Employee from "../views/Employee";
 import EducationalLiterature from "../views/EducationalLiterature";
+import Schedule from "../views/Schedule";
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,12 @@ const routes = [
     path: '/educational-literature',
     name: 'EducationalLiterature',
     component: EducationalLiterature
+  },
+
+  {
+    path: '/schedule',
+    name: 'Schedule',
+    component: Schedule
   },
 
 //   {
