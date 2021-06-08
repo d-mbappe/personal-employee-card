@@ -23,8 +23,6 @@
                 <Avatar ref="avatar"
                         @setImg="setProfileImg($event)"
                         :imageURL="img"
-
-                        :original="originalPhoto"
                 />
 
                 <div class="profile-form">
@@ -65,9 +63,8 @@
                                   :key="i + 'item'"
                                   class="item"
                               >
-                                <!--                                                                {{courses}}-->
                                 <v-list-item-icon>
-                                  <v-icon v-text="item.icon"></v-icon>
+                                  <v-icon> mdi-attachment</v-icon>
                                 </v-list-item-icon>
                                 <v-list-item-content>
                                   <v-list-item-title v-if="!item.change" v-text="item.text"></v-list-item-title>
@@ -78,19 +75,33 @@
                                       v-model="item.text"
                                   ></v-text-field>
                                 </v-list-item-content>
+                                <!--Редактирование-->
                                 <v-btn
                                     fab
                                     dark
-                                    small
+                                    x-small
                                     color="orange"
                                     class="ml-4"
-                                    @click.prevent="test(i)"
+                                    @click.prevent="changeItem(i, 'courses')"
                                 >
                                   <v-icon v-if="!item.change" dark small>
                                     mdi-pencil
                                   </v-icon>
                                   <v-icon v-else dark>
                                     mdi-check
+                                  </v-icon>
+                                </v-btn>
+                                <!--Удаление-->
+                                <v-btn
+                                    fab
+                                    dark
+                                    x-small
+                                    color="red"
+                                    class="ml-4"
+                                    @click.prevent="deleteItem(i, 'courses')"
+                                >
+                                  <v-icon dark small>
+                                    mdi-delete
                                   </v-icon>
                                 </v-btn>
                               </v-list-item>
@@ -126,11 +137,11 @@
                           <v-list>
                             <v-list-item-group >
                               <v-list-item
-                                  v-for="(item, i) in courses"
+                                  v-for="(item, i) in awards"
                                   :key="i + 'item'"
                               >
                                 <v-list-item-icon>
-                                  <v-icon v-text="item.icon"></v-icon>
+                                  <v-icon> mdi-attachment </v-icon>
                                 </v-list-item-icon>
                                 <v-list-item-content>
                                   <v-list-item-title v-if="!item.change" v-text="item.text"></v-list-item-title>
@@ -141,13 +152,14 @@
                                       v-model="item.text"
                                   ></v-text-field>
                                 </v-list-item-content>
+                                <!--Редактирование-->
                                 <v-btn
                                     fab
                                     dark
-                                    small
+                                    x-small
                                     color="orange"
                                     class="ml-4"
-                                    @click.prevent="test(i)"
+                                    @click.prevent="changeItem(i, 'awards')"
                                 >
                                   <v-icon v-if="!item.change" dark small>
                                     mdi-pencil
@@ -155,6 +167,20 @@
 
                                   <v-icon v-else dark>
                                     mdi-check
+                                  </v-icon>
+                                </v-btn>
+                                <!--Удаление-->
+                                <!--Удаление-->
+                                <v-btn
+                                    fab
+                                    dark
+                                    x-small
+                                    color="red"
+                                    class="ml-4"
+                                    @click.prevent="deleteItem(i, 'courses')"
+                                >
+                                  <v-icon dark small>
+                                    mdi-delete
                                   </v-icon>
                                 </v-btn>
                               </v-list-item>
@@ -168,7 +194,7 @@
                                 dark
                                 small
                                 color="primary"
-                                @click="addItem('award')"
+                                @click="addItem('awards')"
                             >
                               <v-icon dark>
                                 mdi-plus
@@ -215,25 +241,6 @@
       drawer: null,
       img: '',
 
-      // courses: [],
-      items: [
-        {
-          icon: 'mdi-attachment',
-          text: 'Введение в преподавание английского языка как второго языка',
-        },
-        {
-          icon: 'mdi-attachment',
-          text: 'Практика формирования контента для онлайн-курса в условиях цифрового обучения(исключительно ЭОиДОТ)',
-        },
-        {
-          icon: 'mdi-attachment',
-          text: 'Создание и использование цифровых образовательных ресурсов в профессиональной деятельности учителя(исключительно ЭОиДОТ)',
-        },
-        {
-          icon: 'mdi-attachment',
-          text: 'Актуальные вопросы преподавания английского языка и культуры в работе преподавателя естественнонаучных и технических факультетов вузов и колледжей (с частичным применением ЭОиДОТ)',
-        },
-      ],
     }),
 
     computed: {
@@ -242,23 +249,40 @@
       },
 
       courses() {
-        return this.$store.getters.coursesAddChangeProperty
+        return this.$store.getters.arrayAddChangeProperty( 'courses')
+      },
+
+      awards() {
+        return this.$store.getters.arrayAddChangeProperty( 'awards')
       }
     },
 
     mounted() {
-      console.log(this.courses)
     },
 
     methods: {
       addItem(array) {
+        let newItem = this[array].length;
 
-      },
+        this[array].push({
+          text: '',
+        });
 
-      test(i) {
-        this.courses[i].change = !this.courses[i].change;
+        this.changeItem(newItem, array);
         this.$forceUpdate();
       },
+
+      deleteItem(i, type) {
+        this[type].splice(i, 1);
+        this.$forceUpdate();
+
+      },
+
+      changeItem(i , type) {
+        this[type][i].change = !this[type][i].change;
+        this.$forceUpdate();
+      },
+
       hide() {
         this.modal = false;
       },
